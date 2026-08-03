@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zone Mixte - L'Actualité Football </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Effets de halo néon sur-vitaminés */
+        .shadow-neon-violet {
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.3), 0 0 30px rgba(139, 92, 246, 0.6), inset 0 0 15px rgba(139, 92, 246, 0.1);
+        }
+        .shadow-neon-orange {
+            box-shadow: 0 0 10px rgba(249, 115, 22, 0.3), 0 0 25px rgba(249, 115, 22, 0.6), inset 0 0 15px rgba(249, 115, 22, 0.1);
+        }
+        .shadow-neon-indigo {
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3), 0 0 25px rgba(99, 102, 241, 0.6), inset 0 0 15px rgba(99, 102, 241, 0.1);
+        }
+        .text-glow-violet {
+            text-shadow: 0 0 12px rgba(167, 139, 250, 0.9), 0 0 2px rgba(167, 139, 250, 0.5);
+        }
+        .text-glow-orange {
+            text-shadow: 0 0 12px rgba(249, 115, 22, 0.9), 0 0 2px rgba(249, 115, 22, 0.5);
+        }
+        .text-glow-blue { 
+            text-shadow: 0 0 12px rgba(59, 130, 246, 0.9); 
+        }
+
+        /* EFFET DE LUEUR DES NÉONS VECTORIELS BG */
+        .neon-blue-svg {
+            filter: drop-shadow(0 0 2px rgba(59, 130, 246, 1)) drop-shadow(0 0 8px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.4));
+        }
+        .neon-orange-svg {
+            filter: drop-shadow(0 0 2px rgba(249, 115, 22, 1)) drop-shadow(0 0 8px rgba(249, 115, 22, 0.8)) drop-shadow(0 0 15px rgba(249, 115, 22, 0.4));
+        }
+
+        /* Style personnalisé pour la barre de défilement */
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 4px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: #8b5cf6;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950/40 text-slate-100 font-sans antialiased min-h-screen relative overflow-x-hidden">
+
+    <!-- ================= CONSTELLATION DE NÉONS VECTORIELS DE FOND ================= -->
+    <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        
+        <!-- --- CÔTÉ GAUCHE DE LA PAGE --- -->
+        <!-- Crochet arrondi bleu (Haut Gauche) -->
+        <svg class="absolute top-32 left-4 md:left-12 w-32 h-12 text-blue-500 neon-blue-svg opacity-80" viewBox="0 0 120 40">
+            <path d="M5,35 L5,15 Q5,5 15,5 L105,5 Q115,5 115,15 L115,35 M60,5 L60,0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Éclair / Zigzag Orange (Milieu Gauche - Niveau Sujet de la Semaine) -->
+        <svg class="absolute top-[28%] left-2 md:left-8 w-20 h-32 text-orange-500 neon-orange-svg opacity-85" viewBox="0 0 80 120">
+            <path d="M10,10 L70,35 L20,70 L75,110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="absolute top-[38%] left-10 md:left-24 w-4 h-4 text-orange-400 neon-orange-svg opacity-70" viewBox="0 0 10 10">
+            <path d="M5,0 L5,10 M0,5 L10,5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+
+        <!-- Angle bleu (Milieu Bas Gauche - Niveau Podcasts) -->
+        <svg class="absolute top-[58%] left-4 md:left-10 w-24 h-16 text-blue-500 neon-blue-svg opacity-80" viewBox="0 0 100 60">
+            <path d="M10,50 L90,30 L10,10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="absolute top-[62%] left-16 md:left-28 w-4 h-4 text-blue-400 neon-blue-svg opacity-70" viewBox="0 0 10 10">
+            <path d="M5,0 L5,10 M0,5 L10,5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+
+        <!-- Ligne aiguë orange (Très bas Gauche) -->
+        <svg class="absolute bottom-24 left-2 md:left-12 w-28 h-20 text-orange-500 neon-orange-svg opacity-80" viewBox="0 0 100 60">
+            <path d="M10,10 L90,30 L10,50" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <!-- --- CÔTÉ DROIT DE LA PAGE --- -->
+        <!-- Crochet arrondi orange (Haut Droite) -->
+        <svg class="absolute top-32 right-4 md:right-12 w-32 h-12 text-orange-500 neon-orange-svg opacity-80" viewBox="0 0 120 40">
+            <path d="M5,35 L5,15 Q5,5 15,5 L105,5 Q115,5 115,15 L115,35 M60,5 L60,0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Éclair / Zigzag Bleu (Milieu Droite) -->
+        <svg class="absolute top-[22%] right-2 md:right-8 w-20 h-32 text-blue-500 neon-blue-svg opacity-85" viewBox="0 0 80 120">
+            <path d="M70,10 L10,35 L60,70 L5,110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="absolute top-[28%] right-10 md:right-24 w-4 h-4 text-blue-400 neon-blue-svg opacity-70" viewBox="0 0 10 10">
+            <path d="M5,0 L5,10 M0,5 L10,5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+
+        <!-- Angle orange (Milieu Bas Droite - Niveau Pronos) -->
+        <svg class="absolute top-[52%] right-4 md:right-10 w-24 h-16 text-orange-500 neon-orange-svg opacity-80" viewBox="0 0 100 60">
+            <path d="M90,50 L10,30 L90,10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="absolute top-[56%] right-16 md:right-28 w-4 h-4 text-orange-400 neon-orange-svg opacity-70" viewBox="0 0 10 10">
+            <path d="M5,0 L5,10 M0,5 L10,5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+
+        <!-- Ligne aiguë bleue (Très bas Droite) -->
+        <svg class="absolute bottom-24 right-2 md:right-12 w-28 h-20 text-blue-500 neon-blue-svg opacity-80" viewBox="0 0 100 60">
+            <path d="M90,10 L10,30 L90,50" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+    </div>
+    <!-- ===================================================================== -->
+
+    <!-- Contenu principal (Z-10 pour passer au-dessus des néons) -->
+    <div class="relative z-10">
+
+        <nav class="bg-slate-950/80 backdrop-blur-xl text-white px-4 py-2 border-b-2 border-violet-500/50 sticky top-0 z-50 shadow-neon-violet">
+            <div class="container mx-auto flex justify-between items-center">
+                
+                <a href="#" class="flex items-center space-x-4 h-20 group transition-all">
+                    <img src="https://i.ibb.co/wrWnXY9L/zone-mixte.png" alt="Zone Mixte Logo" class="h-full w-auto object-contain drop-shadow-[0_0_10px_rgba(99,102,241,0.9)] group-hover:drop-shadow-[0_0_20px_rgba(249,115,22,1)] transition-all duration-300">
+                    <span class="text-2xl font-black tracking-widest text-indigo-400 text-glow-violet uppercase transition-colors duration-300 group-hover:text-orange-400">
+                        ZONE <span class="text-orange-400 text-glow-orange group-hover:text-indigo-400">MIXTE</span>
+                    </span>
+                </a>
+
+                <ul class="flex space-x-4 lg:space-x-6 font-black text-[11px] lg:text-xs uppercase tracking-widest">
+                    <li><a href="#" class="text-violet-400 hover:text-violet-300 transition-colors text-glow-violet">Accueil</a></li>
+                    <li><a href="hebdo.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Hebdo</a></li>
+                    <li><a href="Debriefs.html"class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Debriefs</a></li>
+                    <li><a href="Podcasts.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Podcasts</a></li>
+                    <li><a href="LPP.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Les Petits pronos</a></li>
+                    <li><a href="Barometre.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Le Baromètre</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <header class="container mx-auto mt-8 px-4">
+            <div class="relative rounded-xl overflow-hidden h-64 md:h-80 border-2 border-violet-500 shadow-neon-violet bg-slate-950">
+                <img src="https://i.ibb.co/k6BmWV5f/banniere.jpg" alt="Zone Mixte Bannière" class="w-full h-full object-cover object-center brightness-[0.45] contrast-125">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
+                    <span class="bg-indigo-500/30 text-indigo-300 text-xs font-black px-3 py-1 rounded border-2 border-indigo-400 tracking-widest w-max uppercase mb-3">
+                        Média Indépendant
+                    </span>
+                    <h1 class="text-4xl md:text-6xl font-black text-slate-50 tracking-wider uppercase">
+                        L'Actualité<span class="text-orange-400 text-glow-orange"> FOOTBALL</span>
+                    </h1>
+                    <p class="text-sm md:text-base text-slate-300 mt-2 max-w-xl font-medium tracking-wide">
+                        Analyses tactiques pointues, podcasts exclusifs et débriefings passionnés en direct.
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <main class="container mx-auto my-8 px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-2 space-y-8">
+                
+               <section class="bg-slate-950/60 backdrop-blur-md rounded-xl overflow-hidden border-2 border-violet-500/60 shadow-neon-violet transition-all duration-300 hover:border-violet-400 grid grid-cols-1 md:grid-cols-5">
+    <div class="md:col-span-2 h-56 md:h-full relative bg-slate-950 overflow-hidden">
+        <a href="https://ibb.co/wZSngQCn">
+            <img src="https://i.ibb.co/TD4Q20RQ/Monochrome-Simple-Portraits-Photo-Collage.png"
+                 alt="Monochrome-Simple-Portraits-Photo-Collage"
+                 class="w-full h-full object-cover object-center brightness-[0.45] contrast-125 hover:scale-110 transition-all duration-500">
+        </a>
+        <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-transparent to-slate-950"></div>
+    </div>
+    <div class="p-6 md:p-8 md:col-span-3 flex flex-col justify-center">
+                        <div>
+                            <span class="bg-orange-500/20 text-orange-400 text-xs font-black px-3 py-1 rounded border border-orange-400/50 tracking-widest text-glow-orange">LE SUJET DE LA SEMAINE</span>
+                        </div>
+                        <h2 class="text-2xl font-black mt-4 mb-3 text-slate-50 uppercase tracking-wide">Lampard et coventry en PL !</h2>
+                        <p class="text-slate-300 leading-relaxed text-sm">
+                            Présentation du club et de sa montée en Premier League avec un coach bien connu du monde du football
+                        </p>
+                        <a href="Le SDLS.html" class="inline-block mt-4 text-violet-400 font-black tracking-wide text-glow-violet hover:text-violet-300 hover:underline transition-colors">Lire la suite →</a>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-xl font-black mb-6 text-indigo-400 text-glow-violet uppercase tracking-widest border-b-2 border-indigo-500/30 pb-2">Le Kiosque Hebdo</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- Article 1 : Olise (Badge Bleu) -->
+                        <div class="bg-slate-950/40 backdrop-blur-md rounded-xl overflow-hidden border-2 border-slate-800 hover:border-indigo-500 shadow-sm hover:shadow-neon-indigo transition-all duration-300">
+                            <div class="h-48 overflow-hidden bg-slate-950 relative">
+                               <img src="https://i.ibb.co/fYNXCgnd/skysports-max-dowman-arsenal.jpg"
+             alt="Olise Arsenal"
+             class="w-full h-full object-cover brightness-90 contrast-125 hover:scale-110 transition-all duration-500">
+                                <div class="absolute bottom-2 left-2 bg-slate-950 border-2 border-blue-500 px-2 py-0.5 rounded text-[10px] uppercase font-black tracking-widest text-blue-400 text-glow-blue">
+                                     Amical
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <span <span class="text-xs font-bold text-violet-400/80 uppercase font-mono publish-time" data-publish-date="2026-08-03T01:00:00"></span>
+                                <h4 class="font-black text-lg mt-2 text-slate-100 tracking-wide">Le champion d'Angleterre remet le couvert !</h4>
+                                <a href="Arsenal Gerone.html" class="text-sm text-indigo-400 font-bold block mt-9 hover:underline text-glow-violet">Lire l'article</a>
+                            </div>
+                        </div>
+
+                        <!-- Article 2 : LDC (Badge Bleu) -->
+                        <div class="bg-slate-950/40 backdrop-blur-md rounded-xl overflow-hidden border-2 border-slate-800 hover:border-indigo-500 shadow-sm hover:shadow-neon-indigo transition-all duration-300">
+                            <div class="h-48 overflow-hidden bg-slate-950 relative">
+                        <a href="https://ibb.co/mVMttkzY"><img src="https://i.ibb.co/xtRGGW5c/Tan-and-Brown-Modern-Fashion-Style-Photo-Collage.png" alt="Tan-and-Brown-Modern-Fashion-Style-Photo-Collage" border="0"></a>
+                                <div class="absolute bottom-2 left-2 bg-slate-950 border-2 border-blue-500 px-2 py-0.5 rounded text-[10px] uppercase font-black tracking-widest text-blue-400 text-glow-blue">
+                                     Mercato
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <span class="text-xs font-bold text-violet-400/80 uppercase font-mono publish-time" data-publish-date="2026-08-03T01:30:00">
+    Publié il y a Xmin
+</span>
+                                <h4 class="font-black text-lg mt-2 text-slate-100 tracking-wide">Chelsea dépasse déjà les 350M€ ?</h4>
+                                <a href="Mercato Blues.html" class="text-sm text-indigo-400 font-bold block mt-11 hover:underline text-glow-violet">Lire l'article</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-xl font-black mb-6 text-orange-400 text-glow-orange uppercase tracking-widest border-b-2 border-orange-500/30 pb-2 flex items-center">
+                        <span class="mr-2">🎙️</span> Les Podcasts Récents
+                    </h3>
+                    <div class="space-y-4">
+                        
+                        <div class="bg-slate-950/50 backdrop-blur-md rounded-xl p-5 border-2 border-slate-800 hover:border-orange-500 shadow-sm hover:shadow-neon-orange transition-all duration-300 flex flex-col sm:flex-row items-center gap-5">
+                            <div class="relative w-16 h-16 rounded-xl bg-orange-500/20 border-2 border-orange-400 flex items-center justify-center flex-shrink-0 group cursor-pointer shadow-neon-orange">
+                                <span class="text-orange-400 text-glow-orange text-2xl group-hover:scale-120 transition-transform">▶</span>
+                            </div>
+                            <div class="flex-grow text-center sm:text-left">
+                                <div class="flex flex-wrap justify-center sm:justify-start gap-2 items-center">
+                                    <span class="bg-violet-500/20 text-violet-300 text-[10px] font-black px-2.5 py-0.5 rounded border border-violet-400/40 tracking-widest uppercase">Épisode 1</span>
+                                    <span class="text-xs font-mono text-slate-400">Prochainement</span>
+                                </div>
+                                <h4 class="font-black text-lg mt-1 text-slate-100 tracking-wide">Ici sera publié le premier podcast du site</h4>
+                                <p class="text-xs text-slate-300 mt-1"></p>
+                            </div>
+                            <div class="text-xs text-orange-400 text-glow-orange font-mono font-bold bg-orange-950/40 border border-orange-500/30 px-2 py-1 rounded flex-shrink-0">
+                               durée
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950/50 backdrop-blur-md rounded-xl p-5 border-2 border-slate-800 hover:border-violet-500 shadow-sm hover:shadow-neon-violet transition-all duration-300 flex flex-col sm:flex-row items-center gap-5">
+                            <div class="relative w-16 h-16 rounded-xl bg-violet-500/20 border-2 border-violet-400 flex items-center justify-center flex-shrink-0 group cursor-pointer shadow-neon-violet">
+                                <span class="text-violet-400 text-glow-violet text-2xl group-hover:scale-120 transition-transform">▶</span>
+                            </div>
+                            <div class="flex-grow text-center sm:text-left">
+                                <div class="flex flex-wrap justify-center sm:justify-start gap-2 items-center">
+                                    <span class="bg-orange-500/20 text-orange-300 text-[10px] font-black px-2.5 py-0.5 rounded border border-orange-400/40 tracking-widest uppercase">épisode 2</span>
+                                    <span class="text-xs font-mono text-slate-400">Prochainement</span>
+                                </div>
+                                <h4 class="font-black text-lg mt-1 text-slate-100 tracking-wide">Vous retrouverez ici le second podcast de la série</h4>
+                                <p class="text-xs text-slate-300 mt-1"></p>
+                            </div>
+                            <div class="text-xs text-violet-400 text-glow-violet font-mono font-bold bg-violet-950/40 border border-violet-500/30 px-2 py-1 rounded flex-shrink-0">
+                               durée
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="bg-slate-950/50 backdrop-blur-md rounded-xl p-6 border-2 border-violet-500/40 hover:border-violet-400 shadow-sm hover:shadow-neon-violet transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-black text-violet-400 text-glow-violet uppercase tracking-widest border-b-2 border-slate-800 pb-2 mb-3">
+                                📡 Le Vestiaire
+                            </h3>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Pour ne rater aucune émission, échanger tactique entre passionnés et réagir aux baromètres, rejoins nos réseaux officiels !
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 mt-6">
+                            <a href="https://www.instagram.com/zone_mixte_/" target="_blank" class="flex items-center justify-center space-x-2 bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/50 rounded-lg p-2 text-xs font-bold uppercase tracking-widest transition-all">
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://www.tiktok.com/@ecrirepourexister4?_r=1&_t=ZG-98YqQyA7sK8" target="_blank" class="flex items-center justify-center space-x-2 bg-orange-600/30 hover:bg-orange-600 text-orange-300 hover:text-white border border-orange-500/50 rounded-lg p-2 text-xs font-bold uppercase tracking-widest transition-all">
+                                <span>Tik Tok</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950/50 backdrop-blur-md rounded-xl p-6 border-2 border-orange-500/40 hover:border-orange-400 shadow-sm hover:shadow-neon-orange transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-black text-orange-400 text-glow-orange uppercase tracking-widest border-b-2 border-slate-800 pb-2 mb-3">
+                                📨 Flash Info
+                            </h3>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Reçois un récapitulatif chaque vendredi des publications de la semaine et des prochains lives planifiés.
+                            </p>
+                        </div>
+<div class="mt-4 space-y-2">
+    <form action="https://formsubmit.co/adam.hly4@gmail.com" method="POST" class="space-y-2">
+        <input type="hidden" name="_captcha" value="false">
+        <input
+            type="email"
+            name="email"
+            placeholder="Ton e-mail..."
+            required
+            class="w-full bg-black/60 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:border-orange-500 transition-colors shadow-neon-orange"
+        >
+        <button
+            type="submit"
+            class="w-full bg-orange-600 hover:bg-orange-500 text-white font-black text-[10px] uppercase py-2 rounded-lg tracking-widest border border-orange-400 shadow-sm shadow-neon-orange transition-all hover:shadow-neon-orange-glow"
+        >
+            S'abonner
+        </button>
+    </form>
+</div>
+                    </div>
+
+                </section>
+
+                <section class="bg-slate-950/60 backdrop-blur-md rounded-xl p-6 border-2 border-slate-800">
+                    <h3 class="text-xl font-black mb-6 text-indigo-400 text-glow-violet uppercase tracking-widest border-b-2 border-slate-800 pb-2 flex items-center">
+                        <span class="mr-2">🎙️</span> Pourquoi Zone Mixte ?
+                    </h3>
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-indigo-500 to-violet-500 border-2 border-indigo-400 p-1 flex-shrink-0 shadow-neon-indigo">
+                            <div class="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden p-2">
+                                <img src="https://i.ibb.co/wrWnXY9L/zone-mixte.png" alt="Zone Mixte Mini Logo" class="w-full h-full object-contain">
+                            </div>
+                        </div>
+                        <div class="flex-grow text-center md:text-left">
+                            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                                Rédacteur : <span class="text-orange-400 text-glow-orange">Adam Halley</span>
+                            </div>
+                            <h4 class="text-lg font-black text-slate-100 uppercase tracking-wide">Créateur Indépendant & Analyste Tactique</h4>
+                            <p class="text-xs text-indigo-400 text-glow-violet font-mono uppercase tracking-widest mt-0.5">La voix de Zone Mixte</p>
+                            
+                            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+                                Passionné de sport et de football depuis tout petit, créer mon propre média a toujours été un rêve. Aujourd'hui âgé de 20 ans et titulaire d'une licence en journalisme, je lance enfin mon projet en parallèle de mon Master. <strong class="text-orange-400">Zone Mixte</strong> c'est un média indépendant dans lequel sera décrypté le football sous différents aspects avec ma touche personnelle. L'objectif : partager des décryptages sans concession et vivre les matchs de façon brute et vivante. 
+                            </p>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                Ici, pas de débats futiles ni de sensationnalisme : on parle de jeu, d'animations, de transitions et de passion. Merci à tous ceux qui feront grandir le virage !
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="space-y-8">
+                
+                <section class="bg-slate-950/60 backdrop-blur-md p-6 rounded-xl border-2 border-orange-500 shadow-neon-orange">
+                    <h3 class="text-xs font-black tracking-widest text-orange-400 text-glow-orange uppercase mb-3 flex items-center">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-400 animate-ping mr-2"></span> Match à venir : PSG - Aston Villa
+                    </h3>
+                    <div class="grid grid-cols-4 gap-2 text-center font-mono">
+                        <div class="bg-black/60 p-2 rounded-lg border-2 border-slate-800">
+                            <div id="countdown-days" class="text-2xl font-black text-orange-400 text-glow-orange">00</div>
+                            <div class="text-[9px] font-bold text-slate-400 uppercase mt-0.5">Jours</div>
+                        </div>
+                        <div class="bg-black/60 p-2 rounded-lg border-2 border-slate-800">
+                            <div id="countdown-hours" class="text-2xl font-black text-orange-400 text-glow-orange">00</div>
+                            <div class="text-[9px] font-bold text-slate-400 uppercase mt-0.5">Heures</div>
+                        </div>
+                        <div class="bg-black/60 p-2 rounded-lg border-2 border-slate-800">
+                            <div id="countdown-minutes" class="text-2xl font-black text-orange-400 text-glow-orange">00</div>
+                            <div class="text-[9px] font-bold text-slate-400 uppercase mt-0.5">Min</div>
+                        </div>
+                        <div class="bg-black/60 p-2 rounded-lg border-2 border-slate-800">
+                            <div id="countdown-seconds" class="text-xl font-black text-orange-400 text-glow-orange">00</div>
+                            <div class="text-[9px] font-bold text-slate-400 uppercase mt-0.5">Sec</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-slate-950/60 backdrop-blur-md p-6 rounded-xl border-2 border-slate-800 hover:border-indigo-500 shadow-sm hover:shadow-neon-indigo transition-all duration-300">
+                    <div class="flex justify-between items-center mb-4 border-b-2 border-slate-800 pb-2">
+                        <h3 class="text-lg font-black text-slate-200 flex items-center tracking-wider uppercase">
+                            <span class="mr-2 text-indigo-400">🗳️</span> Pronos
+                        </h3>
+                        <span id="poll-status-tag" class="bg-indigo-500/20 text-indigo-300 text-[9px] font-black px-2.5 py-1 rounded border border-indigo-400/40 tracking-widest uppercase animate-pulse">
+                            Votez
+                        </span>
+                    </div>
+
+                    <p class="text-xs text-indigo-400 text-glow-violet font-black mb-4 tracking-wider uppercase">
+                        Qui va remporter le choc Paris SG - Aston Villa ?
+                    </p>
+
+                    <div class="space-y-4">
+                        
+                        <div class="block group">
+                            <label class="flex justify-between text-xs font-black mb-1.5 text-slate-300 group-hover:text-slate-100 transition-colors cursor-pointer">
+                                <span class="flex items-center tracking-wide">
+                                    <input type="radio" name="prono" value="france" class="mr-2 w-4 h-4 accent-indigo-500">
+                                    Victoire du PSG
+                                </span>
+                                <span id="pct-france" class="font-mono text-indigo-400 text-glow-violet font-black">0%</span>
+                            </label>
+                            <div class="w-full bg-black h-2.5 rounded-full overflow-hidden border border-slate-800 shadow-inner">
+                                <div id="bar-france" class="bg-gradient-to-r from-indigo-600 to-indigo-400 h-full rounded-full transition-all duration-500 shadow-neon-indigo" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div class="block group">
+                            <label class="flex justify-between text-xs font-black mb-1.5 text-slate-300 group-hover:text-slate-100 transition-colors cursor-pointer">
+                                <span class="flex items-center">
+                                    <input type="radio" name="prono" value="nul" class="mr-2 w-4 h-4 accent-slate-500">
+                                    Match Nul
+                                </span>
+                                <span id="pct-nul" class="font-mono text-slate-400 font-black">0%</span>
+                            </label>
+                            <div class="w-full bg-black h-2.5 rounded-full overflow-hidden border border-slate-800 shadow-inner">
+                                <div id="bar-nul" class="bg-slate-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div class="block group">
+                            <label class="flex justify-between text-xs font-black mb-1.5 text-slate-300 group-hover:text-slate-100 transition-colors cursor-pointer">
+                                <span class="flex items-center tracking-wide">
+                                    <input type="radio" name="prono" value="espagne" class="mr-2 w-4 h-4 accent-orange-500">
+                                    Victoire d'Aston Villa
+                                </span>
+                                <span id="pct-espagne" class="font-mono text-orange-400 text-glow-orange font-black">0%</span>
+                            </label>
+                            <div class="w-full bg-black h-2.5 rounded-full overflow-hidden border border-slate-800 shadow-inner">
+                                <div id="bar-espagne" class="bg-gradient-to-r from-orange-600 to-orange-400 h-full rounded-full transition-all duration-500 shadow-neon-orange" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button id="btn-vote" onclick="submitVote()" class="w-full mt-5 bg-indigo-600 hover:bg-indigo-500 text-white border-2 border-indigo-400 font-black text-xs uppercase py-2.5 rounded-lg tracking-widest transition-all shadow-md hover:shadow-neon-indigo">
+                        Valider mon prono
+                    </button>
+                    
+                    <div class="text-[10px] text-slate-500 text-center mt-3 font-mono font-bold">
+                        Nombre de votants : <span id="total-votes" class="text-indigo-400">0</span>
+                    </div>
+                </section>
+                
+                <section class="bg-slate-950/60 backdrop-blur-md p-6 rounded-xl border-2 border-slate-800">
+                    <h3 class="text-lg font-black mb-4 border-b-2 border-slate-800 pb-2 text-slate-200 flex items-center tracking-widest uppercase">
+                        <span class="mr-2 text-indigo-400">📅</span> Matchs de la semaine
+                    </h3>
+                    <div class="space-y-3">
+                       <div class="flex justify-between items-center text-xs bg-black/60 p-3 rounded-lg border-2 border-orange-500/50 animate-pulse">
+                          <span class="font-black uppercase tracking-wider w-1/3 text-left text-orange-400 text-glow-orange">Paris SG</span>
+                           <span class="bg-orange-950/60 text-orange-400 border-2 border-orange-500 px-2.5 py-1 rounded-md font-mono font-black text-center w-28 text-xs tracking-widest">MER. 12/08/26 à 21:00</span>
+                            <span class="font-black uppercase tracking-wider w-1/3 text-right text-orange-400 text-glow-orange">Aston Villa</span>
+                        </div>
+                     <div class="flex justify-between items-center text-xs bg-black/40 p-3 rounded-lg border-2 border-slate-800">
+                          <span class="font-black uppercase tracking-wider w-1/3 text-left text-slate-300">Arsenal</span>
+                           <span class="bg-slate-900 text-slate-400 border-2 border-slate-700 px-2.5 py-1 rounded-md font-mono font-black text-center w-28 text-xs tracking-widest text-glow-none">DIM. 16/08/26 16h00</span>
+                            <span class="font-black uppercase tracking-wider w-1/3 text-right text-slate-300">Mannchester City</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-slate-950/60 backdrop-blur-md p-6 rounded-xl border-2 border-slate-800">
+                    <h3 class="text-lg font-black mb-4 border-b-2 border-slate-800 pb-2 text-slate-200 flex items-center tracking-widest uppercase">
+                        <span class="mr-2 text-orange-400">📊</span> Le Baromètre
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-indigo-500 bg-gradient-to-r from-indigo-500/10 to-transparent p-4 rounded-r-xl border border-slate-800/80 shadow-sm hover:shadow-neon-indigo transition-all">
+                            <h4 class="font-black text-sm text-indigo-400 uppercase tracking-widest text-glow-violet">▲ Les TOPS </h4>
+                            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Retrouvez ici prochainement mes choix pour les tops performances du weekend</p>
+                        </div>
+                        <div class="border-l-4 border-orange-500 bg-gradient-to-r from-orange-500/10 to-transparent p-4 rounded-r-xl border border-slate-800/80 shadow-sm hover:shadow-neon-orange transition-all">
+                            <h4 class="font-black text-sm text-orange-400 uppercase tracking-widest text-glow-orange">▼ Les FLOPS</h4>
+                            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Retrouvez ici prochainement mes choix pour les flops du weekend</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-slate-950/60 backdrop-blur-md p-6 rounded-xl border-2 border-violet-500 shadow-neon-violet">
+                    <div class="flex justify-between items-center mb-4 border-b-2 border-slate-800 pb-2">
+                        <h3 class="text-lg font-black text-slate-200 flex items-center tracking-widest uppercase">
+                            <span class="mr-2 text-violet-400">🎙️</span> Live Commentary
+                        </h3>
+                        <span class="text-[10px] font-black text-violet-400 bg-violet-500/20 border-2 border-violet-400/40 px-2.5 py-0.5 rounded-md uppercase tracking-widest text-glow-violet">
+                            Planning
+                        </span>
+                    </div>
+                    
+                    <p class="text-xs text-slate-300 mb-4 leading-relaxed font-medium">
+                        Retrouvez-moi en direct audio pour vivre les plus grandes affiches de la semaine comme si vous y étiez !
+                    </p>
+
+                    <div class="space-y-4">
+                        
+                        <div class="bg-black/60 p-4 rounded-xl border-2 border-violet-500/40 hover:border-violet-400 transition-all">
+                            <div class="flex justify-between items-center text-[10px] mb-2">
+                                <span class="font-mono text-orange-400 font-black uppercase tracking-widest text-glow-orange">🔥 Prochain Direct</span>
+                                <span class="text-slate-400 font-bold uppercase tracking-wide">Mardi 12/08/26 à 21:00</span>
+                            </div>
+                            <h4 class="font-black text-base text-slate-100 tracking-wide">Paris SG - Aston Villa</h4>
+                            <p class="text-xs text-slate-400 mt-1">Finale de la SuperCoupe d'Europe! Prise d'antenne 15 minutes avant le coup d'envoi.</p>
+                            
+                            <div class="mt-4">
+                                <a href="https://www.twitch.tv/zonemixetv" target="_blank" class="block text-center bg-violet-600 hover:bg-violet-500 text-white font-black text-xs uppercase py-2 rounded-lg transition-all tracking-widest border-2 border-violet-400 shadow-md hover:shadow-neon-violet">
+                                    Rejoindre le Live
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="bg-black/30 p-4 rounded-xl border-2 border-slate-800 hover:border-slate-700 transition-all">
+                            <div class="flex justify-between items-center text-[10px] mb-2">
+                                <span class="font-mono text-slate-500 font-black uppercase tracking-widest">Calendrier</span>
+                                <span class="text-slate-500 font-bold uppercase tracking-wide">Mercredi 21:00</span>
+                            </div>
+                            <h4 class="font-black text-base text-slate-300 tracking-wide">Arsenal -  Manchester City</h4>
+                            <p class="text-xs text-slate-500 mt-1">Le choc de la Premier league au sommet pour cette finale du Community Shield</p>
+                            
+                            <div class="mt-4">
+                                <button class="w-full text-center border-2 border-slate-800 hover:border-violet-500 text-slate-400 hover:text-violet-300 hover:text-glow-violet font-black text-xs uppercase py-2 rounded-lg transition-all tracking-widest bg-black/40">
+                                    Prochain live
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+        </main>
+
+        <footer class="bg-slate-950 text-slate-500 text-center py-8 mt-16 text-xs border-t-2 border-slate-900 tracking-widest font-bold">
+            <p>© 2026 ZONE MIXTE. Par Adam Halley.</p>
+        </footer>
+    </div>
+
+    <script>
+        /* ---- 1. GESTION DU COMPTE A REBOURS ---- */
+        // Date fixe du prochain match : Mardi 12/08/26 à 21h00
+        const matchDate = new Date('2026-08-12T21:00:00');
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = matchDate.getTime() - now;
+
+            if (difference <= 0) {
+                document.getElementById('countdown-days').innerText = "00";
+                document.getElementById('countdown-hours').innerText = "00";
+                document.getElementById('countdown-minutes').innerText = "00";
+                document.getElementById('countdown-seconds').innerText = "00";
+                clearInterval(intervalId);
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown-days').innerText = days < 10 ? '0' + days : days;
+            document.getElementById('countdown-hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('countdown-minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('countdown-seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        const intervalId = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        /* ---- 2. SONDAGE INTERACTIF (compteurs PARTAGÉS entre tous les visiteurs) ---- */
+        // Utilise CountAPI (countapi.xyz), un service gratuit de compteurs sans inscription :
+        // chaque option du sondage est un compteur nommé, visible et incrémenté par tout le monde.
+        // ⚠️ Change ce nom à chaque nouveau match pour repartir sur un sondage vierge.
+        const NAMESPACE_SONDAGE = 'zonemixte-prono-ang-arg-2026';
+        const OPTIONS_SONDAGE = ['france', 'nul', 'espagne']; // identifiants techniques (voir note dans ma réponse)
+
+        async function recupererVotes() {
+            const resultats = { france: 0, nul: 0, espagne: 0 };
+            await Promise.all(OPTIONS_SONDAGE.map(async (option) => {
+                try {
+                    const reponse = await fetch(`https://api.countapi.xyz/get/${NAMESPACE_SONDAGE}/${option}`);
+                    const data = await reponse.json();
+                    resultats[option] = (data && typeof data.value === 'number') ? data.value : 0;
+                } catch (e) {
+                    resultats[option] = 0;
+                }
+            }));
+            return resultats;
+        }
+
+        function afficherResultats(votes) {
+            const total = votes.france + votes.nul + votes.espagne;
+            
+            const pctFrance = total > 0 ? Math.round((votes.france / total) * 100) : 0;
+            const pctNul = total > 0 ? Math.round((votes.nul / total) * 100) : 0;
+            const pctEspagne = total > 0 ? Math.round((votes.espagne / total) * 100) : 0;
+
+            document.getElementById('total-votes').innerText = total;
+            
+            document.getElementById('pct-france').innerText = pctFrance + "%";
+            document.getElementById('bar-france').style.width = pctFrance + "%";
+
+            document.getElementById('pct-nul').innerText = pctNul + "%";
+            document.getElementById('bar-nul').style.width = pctNul + "%";
+
+            document.getElementById('pct-espagne').innerText = pctEspagne + "%";
+            document.getElementById('bar-espagne').style.width = pctEspagne + "%";
+
+            if (localStorage.getItem('zone_mixte_has_voted')) {
+                const checkedValue = localStorage.getItem('zone_mixte_has_voted');
+                const radios = document.getElementsByName('prono');
+                radios.forEach(radio => {
+                    if(radio.value === checkedValue) radio.checked = true;
+                    radio.disabled = true;
+                });
+                
+                const btn = document.getElementById('btn-vote');
+                btn.innerText = "Prono enregistré ✓";
+                btn.disabled = true;
+                btn.className = "w-full mt-5 bg-slate-900 text-emerald-400 border-2 border-emerald-500/30 text-xs font-black uppercase py-2.5 rounded-lg tracking-widest cursor-not-allowed shadow-none";
+                
+                const statusTag = document.getElementById('poll-status-tag');
+                statusTag.innerText = "Merci";
+                statusTag.className = "bg-emerald-500/20 text-emerald-300 text-[9px] font-black px-2.5 py-1 rounded border border-emerald-400/40 tracking-widest uppercase";
+            }
+        }
+
+        async function chargerEtAfficherSondage() {
+            const votes = await recupererVotes();
+            afficherResultats(votes);
+        }
+
+        async function submitVote() {
+            if (localStorage.getItem('zone_mixte_has_voted')) return;
+
+            const radios = document.getElementsByName('prono');
+            let selectedValue = null;
+
+            for (const radio of radios) {
+                if (radio.checked) {
+                    selectedValue = radio.value;
+                    break;
+                }
+            }
+
+            if (!selectedValue) {
+                alert("Veuillez sélectionner une option avant de valider !");
+                return;
+            }
+
+            const btn = document.getElementById('btn-vote');
+            const texteInitial = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = "Envoi...";
+
+            try {
+                await fetch(`https://api.countapi.xyz/hit/${NAMESPACE_SONDAGE}/${selectedValue}`);
+                localStorage.setItem('zone_mixte_has_voted', selectedValue);
+                await chargerEtAfficherSondage();
+            } catch (e) {
+                btn.disabled = false;
+                btn.innerText = texteInitial;
+                alert("Le vote n'a pas pu être enregistré (connexion indisponible). Réessaie dans un instant.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", chargerEtAfficherSondage);
+
+        /* ---- 2. GESTION DU TEMPS DE PUBLICATION DYNAMIQUE ---- */
+        function formatElapsedTime(publishDate) {
+            const now = new Date();
+            const publish = new Date(publishDate);
+            const diffMs = now - publish;
+            
+            if (diffMs < 0) return "À l'instant";
+            
+            const diffMinutes = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMinutes / 60);
+            const diffDays = Math.floor(diffHours / 24);
+            
+            if (diffMinutes < 1) return "À l'instant";
+            if (diffMinutes < 60) return diffMinutes + "min";
+            if (diffHours < 24) return diffHours + "h";
+            if (diffDays < 30) return diffDays + "j";
+            return Math.floor(diffDays / 30) + "mois";
+        }
+        
+       function updatePublishTimes() { // ✅ Fonction au pluriel
+    const timeElements = document.querySelectorAll(".publish-time"); // ✅ Tous les éléments avec la classe
+    timeElements.forEach(el => { // ✅ Boucle sur chaque élément
+        const publishDate = el.getAttribute("data-publish-date");
+        el.textContent = "Publié il y a " + formatElapsedTime(publishDate);
+    });
+}
+
+// Update immediately and then every minute
+updatePublishTimes();
+setInterval(updatePublishTimes, 60000); // ✅ Appel de la nouvelle fonction
+
+    </script>
+
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5"}' crossorigin="anonymous"></script>
+    <form action="https://formsubmit.co/adam.hly4@gmail.com" method="POST">
+    <input type="email" name="email" placeholder="Ton e-mail..." required>
+    <button type="submit">S'abonner</button>
+</form>
+
+</body>
+</html>
+
+

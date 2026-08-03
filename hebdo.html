@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zone Mixte - L'Actualité Hebdo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .shadow-neon-violet { box-shadow: 0 0 10px rgba(139, 92, 246, 0.3), 0 0 30px rgba(139, 92, 246, 0.6); }
+        .shadow-neon-orange { box-shadow: 0 0 10px rgba(249, 115, 22, 0.3), 0 0 25px rgba(249, 115, 22, 0.6); }
+        .shadow-neon-indigo { box-shadow: 0 0 10px rgba(99, 102, 241, 0.3), 0 0 25px rgba(99, 102, 241, 0.6); }
+        .text-glow-violet { text-shadow: 0 0 12px rgba(167, 139, 250, 0.9); }
+        .text-glow-orange { text-shadow: 0 0 12px rgba(249, 115, 22, 0.9); }
+        .text-glow-blue { text-shadow: 0 0 12px rgba(59, 130, 246, 0.9); }
+        .neon-blue-svg {
+            filter: drop-shadow(0 0 2px rgba(59, 130, 246, 1)) drop-shadow(0 0 8px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.4));
+        }
+        .neon-orange-svg {
+            filter: drop-shadow(0 0 2px rgba(249, 115, 22, 1)) drop-shadow(0 0 8px rgba(249, 115, 22, 0.8)) drop-shadow(0 0 15px rgba(249, 115, 22, 0.4));
+        }
+
+        /* Effet de survol renforcé (Point 4) */
+        .article-card {
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .article-card:hover {
+            transform: scale(1.03) translateY(-4px);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.5), 0 0 45px rgba(139, 92, 246, 0.8), 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Badge "Nouveau" animé (Point 5) */
+        .badge-new {
+            animation: pulse-glow 1.8s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(249, 115, 22, 0.6), 0 0 10px rgba(249, 115, 22, 0.4);
+                opacity: 1;
+            }
+            50% {
+                box-shadow: 0 0 12px rgba(249, 115, 22, 1), 0 0 25px rgba(249, 115, 22, 0.7);
+                opacity: 0.85;
+            }
+        }
+
+        /* Barre de recherche (Point 6) */
+        .search-input:focus {
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.4), 0 0 25px rgba(139, 92, 246, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950/40 text-slate-100 font-sans antialiased min-h-screen relative overflow-x-hidden">
+
+    <!-- ================= CONSTELLATION DE NÉONS VECTORIELS ================= -->
+    <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <svg class="absolute top-10 left-4 md:left-12 w-32 h-12 text-blue-500 neon-blue-svg opacity-80" viewBox="0 0 120 40">
+            <path d="M5,35 L5,15 Q5,5 15,5 L105,5 Q115,5 115,15 L115,35 M60,5 L60,0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <svg class="absolute top-[28%] left-2 md:left-8 w-20 h-32 text-orange-500 neon-orange-svg opacity-85" viewBox="0 0 80 120">
+            <path d="M10,10 L70,35 L20,70 L75,110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="absolute top-[38%] left-10 md:left-24 w-4 h-4 text-orange-400 neon-orange-svg opacity-70" viewBox="0 0 10 10">
+            <path d="M5,0 L5,10 M0,5 L10,5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <svg class="absolute top-[60%] left-4 md:left-10 w-24 h-16 text-blue-500 neon-blue-svg opacity-80" viewBox="0 0 100 60">
+            <path d="M10,50 L90,30 L10,10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="absolute top-[64%] left-16 md:left-28 w-4 h-4 text-blue-400 neon-blue-svg opacity-70" viewBox="0 0 10 10">
+            <path d="M5,0 L5,10 M0,5 L10,5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <svg class="absolute bottom-24 left-2 md:left-12 w-28 h-20 text-orange-500 neon-orange-svg opacity-80" viewBox="0 0 100 60">
+            <path d="M10,10 L90,30 L10,50" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="absolute top-10 right-4 md:right-12 w-32 h-12 text-orange-500 neon-orange-svg opacity-80" viewBox="0 0 120 40">
+            <path d="M5,35 L5,15 Q5,5 15,5 L105,5 Q115,5 115,15 L115,35 M60,5 L60,0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <svg class="absolute top-[22%] right-2 md:right-8 w-20 h-32 text-blue-500 neon-blue-svg opacity-85" viewBox="0 0 80 120">
+            <path d="M70,10 L10,35 L60,70 L5,110" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="absolute top-[28%] right-10 md:right-24 w-4 h-4 text-blue-400 neon-blue-svg opacity-70" viewBox="0 0 10 10">
+            <path d="M5,0 L5,10 M0,5 L10,5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <svg class="absolute top-[52%] right-4 md:right-10 w-24 h-16 text-orange-500 neon-orange-svg opacity-80" viewBox="0 0 100 60">
+            <path d="M90,50 L10,30 L90,10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="absolute top-[56%] right-16 md:right-28 w-4 h-4 text-orange-400 neon-orange-svg opacity-70" viewBox="0 0 10 10">
+            <path d="M5,0 L5,10 M0,5 L10,5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <svg class="absolute bottom-24 right-2 md:right-12 w-28 h-20 text-blue-500 neon-blue-svg opacity-80" viewBox="0 0 100 60">
+            <path d="M90,10 L10,30 L90,50" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="relative z-10">
+        
+        <!-- Navigation -->
+        <nav class="bg-slate-950/80 backdrop-blur-xl text-white px-4 py-2 border-b-2 border-violet-500/50 sticky top-0 z-50 shadow-neon-violet">
+            <div class="container mx-auto flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-4 h-20 group transition-all">
+                    <img src="https://i.ibb.co/wrWnXY9L/zone-mixte.png" alt="Zone Mixte Logo" class="h-full w-auto object-contain drop-shadow-[0_0_10px_rgba(99,102,241,0.9)] group-hover:drop-shadow-[0_0_20px_rgba(249,115,22,1)] transition-all duration-300">
+                    <span class="text-2xl font-black tracking-widest text-indigo-400 text-glow-violet uppercase transition-colors duration-300 group-hover:text-orange-400">
+                        ZONE <span class="text-orange-400 text-glow-orange group-hover:text-indigo-400">MIXTE</span>
+                    </span>
+                </a>
+                <ul class="flex space-x-4 lg:space-x-6 font-black text-[11px] lg:text-xs uppercase tracking-widest">
+                    <li><a href="index.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Accueil</a></li>
+                    <li><a href="hebdo.html" class="text-violet-400 hover:text-violet-300 transition-colors text-glow-violet">Hebdo</a></li>
+                    <li><a href="Debriefs.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Debriefs</a></li>
+                    <li><a href="Podcasts.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Podcasts</a></li>
+                    <li><a href="LPP.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Les Petits Pronos</a></li>
+                    <li><a href="Barometre.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Le Baromètre</a></li>
+                </ul>
+            </div>
+        </nav>
+     
+        <header class="container mx-auto mt-8 px-4">
+            <div class="border-l-4 border-indigo-500 bg-indigo-950/20 p-6 rounded-r-xl border border-slate-800/80 shadow-neon-indigo">
+                <h1 class="text-3xl md:text-5xl font-black tracking-wider uppercase text-slate-50">
+                    Le Kiosque <span class="text-indigo-400 text-glow-violet">Hebdo</span>
+                </h1>
+                <p class="text-xs md:text-sm text-slate-400 font-mono uppercase tracking-widest mt-1">
+                    Tous les articles, exclusivités et analyses de la semaine par Adam Halley
+                </p>
+            </div>
+        </header>
+     
+        <main class="container mx-auto my-8 px-4 space-y-8">
+            
+            <!-- LE SUJET DE LA SEMAINE -->
+            <section class="bg-slate-950/60 backdrop-blur-md rounded-xl overflow-hidden border-2 border-violet-500/60 shadow-neon-violet transition-all duration-300 hover:border-violet-400 grid grid-cols-1 md:grid-cols-5">
+                <div class="md:col-span-2 h-56 md:h-full relative bg-slate-950 overflow-hidden -ml-6">
+                   <a href="https://ibb.co/wZSngQCn"><img src="https://i.ibb.co/TD4Q20RQ/Monochrome-Simple-Portraits-Photo-Collage.png" alt="Monochrome-Simple-Portraits-Photo-Collage" border="0"></a>
+                    <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-transparent to-slate-950"></div>
+                </div>
+                <div class="p-6 md:p-8 md:col-span-3 flex flex-col justify-center">
+                    <div>
+                        <span class="bg-orange-500/20 text-orange-400 text-xs font-black px-3 py-1 rounded border border-orange-400/50 tracking-widest text-glow-orange">LE SUJET DE LA SEMAINE</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-black mt-4 mb-3 text-slate-50 uppercase tracking-wide">Lampard et coventry en PL !</h2>
+                    <p class="text-slate-300 leading-relaxed text-sm">
+                        Présentation du club et de sa montée en Premier League avec un coach bien connu du monde du football
+                    </p>
+                    <div class="mt-4">
+                        <a href="Le SDLS.html" class="inline-block text-sm text-violet-400 font-black tracking-wide text-glow-violet hover:text-violet-300 hover:underline transition-colors">Lire la suite →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BARRE DE RECHERCHE (Point 6) -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 bg-slate-950/60 backdrop-blur-md p-4 rounded-xl border-2 border-violet-500/40">
+                <div class="relative w-full md:w-96">
+                    <input type="text" id="searchInput" placeholder="Rechercher un article..." 
+                        class="search-input w-full bg-slate-900/80 border-2 border-violet-500/50 rounded-lg py-2.5 pl-10 pr-4 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-violet-400 transition-all duration-300">
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+                <span class="text-[11px] font-mono uppercase tracking-widest text-slate-500"></span>
+            </div>
+     
+            <!-- GRILLE ARTICLES -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articlesGrid">
+     
+                <!-- ===== ARTICLE 1 : Olise ===== -->
+<div class="article-card bg-slate-950/60 backdrop-blur-md rounded-xl overflow-hidden border-2 border-violet-500/60 shadow-neon-violet flex flex-col justify-between" data-title="Le champion d'angleterre remet le couvert">
+    <div class="relative h-48 overflow-hidden bg-slate-950">
+        <img src="https://i.ibb.co/fYNXCgnd/skysports-max-dowman-arsenal.jpg" alt="Olise Arsenal" class="w-full h-full object-cover brightness-90 contrast-125 hover:scale-110 transition-all duration-500">
+        <span class="badge-new absolute top-2 right-2 bg-orange-500 text-white text-[9px] font-black uppercase px-2 py-1 rounded-full tracking-widest">Nouveau</span>
+        <div class="absolute bottom-2 left-2 bg-slate-950 border-2 border-blue-500 px-2 py-0.5 rounded text-[10px] uppercase font-black tracking-widest text-blue-400 text-glow-blue">
+            Amical
+        </div>
+    </div>
+    <div class="p-6 flex-grow flex flex-col justify-between">
+        <div>
+            <span class="publish-time text-[10px] font-bold text-violet-400 uppercase font-mono" data-publish-date="2026-08-03T03:47:00"></span>
+            <h2 class="font-black text-xl mt-2 mb-3 text-slate-100 uppercase tracking-wide leading-tight">Le champion d'Angleterre remet le couvert !</h2>
+            <p class="text-slate-400 text-xs leading-relaxed">
+                Arsenal démarre fort son inter-saison face à Gérone !
+            </p>
+        </div>
+        <div class="mt-6 border-t border-slate-900 pt-4">
+            <a href="Arsenal Gerone.html" class="text-xs font-black uppercase tracking-widest text-violet-400 hover:text-violet-300 text-glow-violet">Lire l'article complet →</a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== ARTICLE 2 : Mercato ===== -->
+<div class="article-card bg-slate-950/60 backdrop-blur-md rounded-xl overflow-hidden border-2 border-violet-500/60 shadow-neon-violet flex flex-col justify-between" data-title="mercato attaquant">
+    <div class="relative h-48 overflow-hidden bg-slate-950">
+        <a href="https://ibb.co/mVMttkzY"><img src="https://i.ibb.co/xtRGGW5c/Tan-and-Brown-Modern-Fashion-Style-Photo-Collage.png" alt="Tan-and-Brown-Modern-Fashion-Style-Photo-Collage" border="0"></a>
+        <span class="badge-new absolute top-2 right-2 bg-orange-500 text-white text-[9px] font-black uppercase px-2 py-1 rounded-full tracking-widest">Nouveau</span>
+        <div class="absolute bottom-2 left-2 bg-slate-950 border-2 border-blue-500 px-2 py-0.5 rounded text-[10px] uppercase font-black tracking-widest text-blue-400 text-glow-blue">
+            Mercato
+        </div>
+    </div>
+    <div class="p-6 flex-grow flex flex-col justify-between">
+        <div>
+            <span class="publish-time text-[10px] font-bold text-violet-400 uppercase font-mono" data-publish-date="2026-08-03T03:42:00"></span>
+            <h2 class="font-black text-xl mt-2 mb-3 text-slate-100 uppercase tracking-wide leading-tight">Chelsea dépasse déjà les 350M€ ?</h2>
+            <p class="text-slate-400 text-xs leading-relaxed">
+                Comme souvent le club londonien se montre très actif sur le marché des transferts. Retour sur le début de mercato des Blues !
+            </p>
+        </div>
+        <div class="mt-6 border-t border-slate-900 pt-4">
+            <a href="Mercato Blues.html" class="text-xs font-black uppercase tracking-widest text-violet-400 hover:text-violet-300 text-glow-violet">Lire l'article complet →</a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== ARTICLE 3 : LDC ===== -->
+<div class="article-card bg-slate-950/60 backdrop-blur-md rounded-xl overflow-hidden border-2 border-violet-500/60 shadow-neon-violet flex flex-col justify-between" data-title="ldc tirage sort">
+    <div class="relative h-48 overflow-hidden bg-slate-950">
+        <a href="https://ibb.co/kssdGtVr">
+            <img src="https://i.ibb.co/gLLnrxbX/ICONSPORT-258753-0126.jpg" alt="ICONSPORT-258753-0126" border="0" class="w-full h-full object-cover brightness-90 contrast-125 hover:scale-110 transition-all duration-500 relative bottom-[0px]">
+        </a>
+        <span class="badge-new absolute top-2 right-2 bg-orange-500 text-white text-[9px] font-black uppercase px-2 py-1 rounded-full tracking-widest">Nouveau</span>
+        <div class="absolute bottom-2 left-2 bg-slate-950 border-2 border-blue-500 px-2 py-0.5 rounded text-[10px] uppercase font-black tracking-widest text-blue-400 text-glow-blue">
+            Mercato
+        </div>
+    </div>
+    <div class="p-6 flex-grow flex flex-col justify-between">
+        <div>
+            <span class="publish-time text-[10px] font-bold text-violet-400 uppercase font-mono" data-publish-date="2026-08-03T03:30:00"></span>
+            <h2 class="font-black text-xl mt-2 mb-3 text-slate-100 uppercase tracking-wide leading-tight">Officiel : Kolo Muani de retour à Turin !</h2>
+            <p class="text-slate-400 text-xs leading-relaxed">
+                Le verdict est tombé pour les phases finales de la plus grande compétition européenne. Découvrez notre analyse des poules de la mort.
+            </p>
+        </div>
+        <div class="mt-6 border-t border-slate-900 pt-4">
+            <a href="Kolo Officiel.html" class="text-xs font-black uppercase tracking-widest text-violet-400 hover:text-violet-300 text-glow-violet">Lire l'article complet →</a>
+        </div>
+    </div>
+</div>
+
+                <!-- Article 4 -->
+                <div class="article-card bg-slate-950/60 backdrop-blur-md rounded-xl overflow-hidden border-2 border-violet-500/60 shadow-neon-violet flex flex-col justify-between" data-title="titre article 4">
+                    <div class="relative h-48 overflow-hidden bg-slate-950">
+                         <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=500&auto=format&fit=crop" alt="LDC" loading="lazy" class="w-full h-full object-cover">
+                        <div class="absolute bottom-2 left-2 bg-slate-950 border-2 border-blue-500 px-2 py-0.5 rounded text-[10px] uppercase font-black tracking-widest text-blue-400 text-glow-blue">
+                          Bientôt
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-500 uppercase font-mono">Prochainement</span>
+                            <h2 class="font-black text-xl mt-2 mb-3 text-slate-100 uppercase tracking-wide leading-tight">Nouvel article prochainement !</h2>
+                            <p class="text-slate-400 text-xs leading-relaxed">
+                               
+                            </p>
+                        </div>
+                        <div class="mt-6 border-t border-slate-900 pt-4">
+                            <a href="#" class="text-xs font-black uppercase tracking-widest text-violet-400 hover:text-violet-300 text-glow-violet">Lire l'article complet →</a>
+                        </div>
+                    </div>
+                </div>
+        </main>
+     
+        <footer class="bg-slate-950 text-slate-500 text-center py-8 mt-16 text-xs border-t-2 border-slate-900 tracking-widest font-bold">
+            <p>&copy; 2026 ZONE MIXTE. Par Adam Halley.</p>
+        </footer>
+    </div>
+
+    <!-- Script recherche (Point 6) -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.article-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title') || '';
+                const text = card.textContent.toLowerCase();
+                const match = title.includes(query) || text.includes(query);
+                card.style.display = match ? '' : 'none';
+            });
+        });
+    </script>
+  <script>
+    /* ===== FONCTION POUR CALCULER LE TEMPS ÉCOULÉ ===== */
+    function formatElapsedTime(publishDate) {
+        const now = new Date();
+        const publish = new Date(publishDate);
+        const diffMs = now - publish;
+
+        if (diffMs < 0) return "À l'instant";
+
+        const diffMinutes = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMinutes / 60);
+        const diffDays = Math.floor(diffHours / 24);
+
+        if (diffMinutes < 1) return "À l'instant";
+        if (diffMinutes < 60) return diffMinutes + " min";
+        if (diffHours < 24) return diffHours + "h";
+        if (diffDays < 30) return diffDays + "j";
+        return Math.floor(diffDays / 30) + " mois";
+    }
+
+    /* ===== FONCTION POUR METTRE À JOUR TOUTES LES DATES ===== */
+    function updatePublishTimes() {
+        const timeElements = document.querySelectorAll(".publish-time");
+        timeElements.forEach(el => {
+            const publishDate = el.getAttribute("data-publish-date");
+            el.textContent = "Publié il y a " + formatElapsedTime(publishDate);
+        });
+    }
+
+    /* ===== INITIALISATION AU CHARGEMENT ET TOUTES LES MINUTES ===== */
+    document.addEventListener("DOMContentLoaded", function() {
+        updatePublishTimes();
+        setInterval(updatePublishTimes, 60000); // Rafraîchit toutes les 60 secondes
+    });
+</script>
+
+</body>
+</html>

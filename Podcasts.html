@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debriefs - Zone Mixte</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Effets de halo néon sur-vitaminés */
+        .shadow-neon-violet{box-shadow:0 0 12px rgba(167,139,250,.4),0 0 35px rgba(167,139,250,.7),inset 0 0 20px rgba(167,139,250,.2)}
+        .shadow-neon-orange{box-shadow:0 0 12px rgba(249,115,22,.4),0 0 30px rgba(249,115,22,.7),inset 0 0 20px rgba(249,115,22,.2)}
+        .shadow-neon-indigo{box-shadow:0 0 12px rgba(99,102,241,.4),0 0 30px rgba(99,102,241,.7),inset 0 0 20px rgba(99,102,241,.2)}
+        .shadow-neon-green{box-shadow:0 0 12px rgba(34,197,94,.4),0 0 30px rgba(34,197,94,.7),inset 0 0 20px rgba(34,197,94,.2)}
+
+        .text-glow-violet{text-shadow:0 0 15px rgba(167,139,250,.9),0 0 3px rgba(167,139,250,.6)}
+        .text-glow-orange{text-shadow:0 0 15px rgba(249,115,22,.9),0 0 3px rgba(249,115,22,.6)}
+        .text-glow-indigo{text-shadow:0 0 15px rgba(99,102,241,.9),0 0 3px rgba(99,102,241,.6)}
+        .text-glow-green{text-shadow:0 0 15px rgba(34,197,94,.9),0 0 3px rgba(34,197,94,.6)}
+
+        /* Animation néon pulsante */
+        @keyframes pulse-neon {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        .neon-pulse {
+            animation: pulse-neon 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950/40 text-slate-100 font-sans antialiased min-h-screen relative overflow-x-hidden">
+
+    <!-- ================= CONSTELLATION DE NÉONS VECTORIELS DE FOND ================= -->
+    <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <!-- Crochets arrondis néon (Haut) -->
+        <svg class="absolute top-20 left-2 md:left-8 w-36 h-14 text-blue-500 neon-pulse" viewBox="0 0 140 40">
+            <path d="M5,35 L5,12 Q5,5 15,5 L120,5 Q130,5 130,12 L130,35 M65,5 L65,0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <svg class="absolute top-20 right-2 md:right-8 w-36 h-14 text-orange-500 neon-pulse" viewBox="0 0 140 40">
+            <path d="M5,35 L5,12 Q5,5 15,5 L120,5 Q130,5 130,12 L130,35 M65,5 L65,0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Éclairs néon (Milieu) -->
+        <svg class="absolute top-[15%] left-4 w-16 h-24 text-green-500 neon-pulse" viewBox="0 0 60 80">
+            <path d="M50,10 L10,30 L50,50 L5,70" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="absolute top-[20%] right-4 w-16 h-24 text-indigo-500 neon-pulse" viewBox="0 0 60 80">
+            <path d="M55,15 L15,40 L55,65 L10,80" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <!-- Points néon clignotants -->
+        <div class="absolute top-[60%] left-[20%] w-2 h-2 bg-blue-500 rounded-full neon-pulse"></div>
+        <div class="absolute top-[65%] left-[30%] w-2 h-2 bg-indigo-500 rounded-full neon-pulse" style="animation-delay: 0.5s;"></div>
+        <div class="absolute top-[70%] left-[40%] w-2 h-2 bg-green-500 rounded-full neon-pulse" style="animation-delay: 1s;"></div>
+    </div>
+
+    <!-- ================= NAVIGATION (néon renforcé) ================= -->
+    <div class="relative z-10">
+
+        <nav class="bg-slate-950/80 backdrop-blur-xl text-white px-4 py-2 border-b-2 border-violet-500/50 sticky top-0 z-50 shadow-neon-violet">
+            <div class="container mx-auto flex justify-between items-center">
+
+                <a href="#" class="flex items-center space-x-4 h-20 group transition-all">
+                    <img src="https://i.ibb.co/wrWnXY9L/zone-mixte.png" alt="Zone Mixte Logo" class="h-full w-auto object-contain drop-shadow-[0_0_10px_rgba(99,102,241,0.9)] group-hover:drop-shadow-[0_0_20px_rgba(249,115,22,1)] transition-all duration-300">
+                    <span class="text-2xl font-black tracking-widest text-indigo-400 text-glow-violet uppercase transition-colors duration-300 group-hover:text-orange-400">
+                        ZONE <span class="text-orange-400 text-glow-orange group-hover:text-indigo-400">MIXTE</span>
+                    </span>
+                </a>
+
+            <ul class="flex space-x-2 lg:space-x-4 font-black text-[10px] lg:text-[11px] uppercase tracking-widest">
+                <li><a href="Index.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Accueil</a></li>
+                <li><a href="hebdo.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Hebdo</a></li>
+                <li><a href="debriefs.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Debriefs</a></li>
+                <li><a href="Podcasts.html" class="text-violet-400 hover:text-violet-300 transition-all duration-300 neon-pulse text-glow-violet">Podcasts</a></li>
+                    <li><a href="LPP.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Les Petits pronos</a></li>
+                    <li><a href="Barometre.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Le Baromètre</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ================= CONTENU PRINCIPAL ================= -->
+    <main class="container mx-auto px-2 pb-8 mt-16">
+        <h1 class="text-3xl font-black text-center mb-8 text-indigo-400 text-glow-violet uppercase tracking-widest border-b-3 border-violet-500/80 pb-2 neon-pulse">Les Podcasts</h1>
+
+        <!-- Article 1 (seul article conservé) -->
+        <section class="bg-slate-950/60 backdrop-blur-md rounded-xl overflow-hidden border-2 border-violet-500/80 shadow-neon-violet transition-all duration-300 hover:shadow-neon-violet/80 hover:border-violet-400 mb-4">
+            <div class="grid grid-cols-1 md:grid-cols-3">
+                <div class="md:col-span-1 h-64 md:h-80 relative bg-slate-950 p-0 overflow-hidden">
+                    <a href="https://imgbb.com/">
+                        <img src="https://i.ibb.co/PGDTGj4p/pngtree-vintage-microphone-and-modern-headphones-on-studio-desk-with-dramatic-red-image-17189881.jpg"
+                             alt="pngtree vintage microphone and modern headphones on studio desk with dramatic red image 17189881"
+                             class="w-full h-full object-cover object-center brightness-90 contrast-125 hover:scale-105 transition-all duration-500">
+                    </a>
+                    <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-transparent to-slate-950"></div>
+                </div>
+                <div class="md:col-span-2 p-4 flex flex-col justify-center">
+                    <div><span class="bg-violet-500/30 text-violet-400 text-[10px] font-black px-2 py-0.5 rounded border border-violet-400/60 tracking-widest text-glow-violet shadow-neon-violet">Bientôt disponible</span></div>
+                    <h2 class="text-xl font-black mt-2 mb-2 text-slate-50 uppercase tracking-wide neon-pulse">Retrouvez bientôt les podcasts ZoneMixte exclusifs !</h2>
+                    <p class="text-slate-300 text-xs leading-relaxed"></p>
+                    <a href="#" class="text-indigo-400 font-bold mt-2 hover:text-indigo-300 transition-all duration-300 neon-pulse inline-block self-start text-sm"></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER (néon renforcé) ================= -->
+    <footer class="bg-slate-950 text-slate-500 text-center py-4 mt-8 text-[10px] border-t-3 border-purple-800 shadow-neon-violet tracking-widest font-bold">
+        <p class="neon-pulse">© 2026 ZONE MIXTE. Par Adam Halley.</p>
+    </footer>
+</body>
+</html>
