@@ -521,59 +521,6 @@
         </footer>
     </div>
 
-  <script>
-function updatePublishTimes() {
-    const now = new Date();
-    document.querySelectorAll('.publish-time').forEach(el => {
-        const publishDate = new Date(el.dataset.publishDate);
-
-        // Vérification de la validité de la date
-        if (isNaN(publishDate.getTime())) {
-            el.textContent = "Date invalide";
-            return;
-        }
-
-        const diffMs = now - publishDate;
-
-        // Date dans le futur
-        if (diffMs < 0) {
-            el.textContent = "Date future ?";
-            return;
-        }
-
-        const diffSec = Math.floor(diffMs / 1000);
-        const diffMin = Math.floor(diffSec / 60);
-        const diffHours = Math.floor(diffMin / 60);
-        const diffDays = Math.floor(diffHours / 24);
-
-        let text;
-        if (diffMin < 1) {
-            text = "À l'instant";
-        } else if (diffMin < 60) {
-            text = `Il y a ${diffMin}min`;
-        } else if (diffHours < 24) {
-            text = `Il y a ${diffHours}h`;
-        } else if (diffDays < 30) {
-            text = `Il y a ${diffDays}j`;
-        } else {
-            // Format français JJ/MM/AA
-            const day = String(publishDate.getDate()).padStart(2, '0');
-            const month = String(publishDate.getMonth() + 1).padStart(2, '0');
-            const year = String(publishDate.getFullYear()).slice(-2);
-            text = `Il y a ${day}/${month}/${year}`;
-        }
-
-        el.textContent = text;
-    });
-}
-
-// Exécute une seule fois au chargement
-updatePublishTimes();
-
-// Met à jour toutes les minutes
-setInterval(updatePublishTimes, 60000);
-  </script>
-  
     <script>
         /* ---- 1. GESTION DU COMPTE A REBOURS ---- */
         // Date fixe du prochain match : Mardi 12/08/26 à 21h00
@@ -606,124 +553,137 @@ setInterval(updatePublishTimes, 60000);
         const intervalId = setInterval(updateCountdown, 1000);
         updateCountdown();
 
-    <script>
-{
-  "type": "service_account",
-  "project_id": "zonemixte-9079b",
-  "private_key_id": "fb96d513caae4da2d7d9a1d660e0510009437e48",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDRaP9kdLFOzgE2\nuH+Ezszn0hP8ezuDcvBIt2/t05d4L8DS/oKVh3MotlO/Svw3Wn2qhKbILprLdwkB\n9M1maBWckw9icPHy8Um8dFHrK2cLxC9rHjNahh2fgiio/J6eGdFX4ArgMDvbKowl\n9AyZvqvkvYBWGidaROF/tWqFJefYSy5QZU54gR38PP4YjYkfcFU07IJN9hmC2a9P\nqcP9w/cpXHCrMojKY4zzB6yC8/kHpMIm3LI5hE++9215tlUz9NGCs6zpw7F/NFAQ\njIBrdeS+q18OObQI7pEYFgm6/NSIwDPypvwPYqctlVk1c806OSUU0uRgRqdPjSAq\n3B7cXhEPAgMBAAECggEAKwXn5qMk5HxlenEYXdhA9+XMzmQhG4YLQN1TJSkCJyKk\nepTojkEIU1Z2SUhmHhc810Iuo9UTX3cCxkCdzIrY2dTK5d4vj0qsbAf35pmBr8Ss\nO1U2lsQUJPfQU7um+PNz85pnkZzHR2Vr6sZDqnimhzW5vrbb2+tn6t2CV32srt6P\n0TEfYCKteQXkMWQNDNUOgfZOqCerXNJ0tft8Fuzen+FUnSJvuVO+pgFLKwTbs/x8\nUPxBeNuUtamdn2g3r48UZS6v/WuDQnLtKnW1jU+zEwYLI/+KWW/ctQGw9IBmlhAn\nV0fXijI564sYfGcTgDxjz4+HBagnjJEHUJ1BGHhOyQKBgQD8zDCjXaZlmUZjh5nZ\n9Ko/zZdGtmW4dAyzHkFIHkc6X/fBIIsTPuq8nJ+ZL8WLLlbWtY5Y8CNd8kS0Hhv3\nPw2QW8SJ7f9pTBsHXfgHkudjBQp/xc+cSS6eJOHIQqc++5Rdt9ugvr7QQS7FJyeB\nFGFKc7uhIJF+Gc73nOpeZKKvmQKBgQDUEBqvlkkWo7bqby4kBeCIny/hKsjdxgNX\nsazkIdy+ELilpWKp2C4o7uQ+70lp7PXO0bNMhGwkUmj8gtu46M5ZMGHKgS484zs1\n3g4zylvUcj30Q0vnMLr0k/+oONCTzY3XSUAPyQjVjKRBffqenr+ovX1jpLhcWcB6\n8cVEWzlO5wKBgQDOfYuNJcXxX03bprvJCMy36RsUK5DTJhfph2ETo4fS6ujY29g+\nFDpxbg3/dsIJegR8xThM9XouFuJ/rchyIRLXQ946PClQvVWmot8icKCIhWmaDN4U\nbsKhcsbqaWdrTtxV4QSJPMVoHpYxfFYMXbVKt1YfuxacxkAEiiv2hoVMoQKBgGEC\nLPL98NlmcxqzWYwpFBnrmF+Mzu6E0qqfINQLmYto4s8D5SqFNjiLb+ZKWG8Ycyn1\nS+xI9592A4jf49umxB6Qv2t/xMMdv8xYlG6kt3Vr/WNsFaDg7eVMfrtZojC665P8\nck3GTUBDYjCDjM5bGJn8dQvMIno8pIyZZQBsKr8pAoGAemmpDStuneZyixVdd1xu\nG/csV2+xqXSFlBIPRGvaiRVhOH/1LrGsZCRWQCq/To/7FTSuLJZ+6O7Wll4Rh1Ux\nu9uAMaVBdcCzOaruVBYkZGdlqmaKcbgarjskhXzi/dsiOZkA3Zad9Hx6onsJthMt\nrSeEz+WZ78KQoRvSuenOfHQ=\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-fbsvc@zonemixte-9079b.iam.gserviceaccount.com",
-  "client_id": "104998179122507219792",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40zonemixte-9079b.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
-}
+        /* ---- 2. SONDAGE INTERACTIF (compteurs PARTAGÉS entre tous les visiteurs) ---- */
+        // Utilise CountAPI (countapi.xyz), un service gratuit de compteurs sans inscription :
+        // chaque option du sondage est un compteur nommé, visible et incrémenté par tout le monde.
+        // ⚠️ Change ce nom à chaque nouveau match pour repartir sur un sondage vierge.
+        const NAMESPACE_SONDAGE = 'zonemixte-prono-ang-arg-2026';
+        const OPTIONS_SONDAGE = ['france', 'nul', 'espagne']; // identifiants techniques (voir note dans ma réponse)
 
-const firebaseConfig = {
-  apiKey: "TA_CLE_API_KEY",
-  authDomain: "TA_PROJET.firebaseapp.com",
-  databaseURL: "https://TA_PROJET.firebaseio.com",
-  projectId: "TA_PROJET",
-  storageBucket: "TA_PROJET.appspot.com",
-  messagingSenderId: "TON_SENDER_ID",
-  appId: "TON_APP_ID"
-};
+        async function recupererVotes() {
+            const resultats = { france: 0, nul: 0, espagne: 0 };
+            await Promise.all(OPTIONS_SONDAGE.map(async (option) => {
+                try {
+                    const reponse = await fetch(`https://api.countapi.xyz/get/${NAMESPACE_SONDAGE}/${option}`);
+                    const data = await reponse.json();
+                    resultats[option] = (data && typeof data.value === 'number') ? data.value : 0;
+                } catch (e) {
+                    resultats[option] = 0;
+                }
+            }));
+            return resultats;
+        }
 
-// Initialise Firebase
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+        function afficherResultats(votes) {
+            const total = votes.france + votes.nul + votes.espagne;
+            
+            const pctFrance = total > 0 ? Math.round((votes.france / total) * 100) : 0;
+            const pctNul = total > 0 ? Math.round((votes.nul / total) * 100) : 0;
+            const pctEspagne = total > 0 ? Math.round((votes.espagne / total) * 100) : 0;
 
-// Fonction pour voter
-async function voter(selectedValue) {
-  const btn = document.getElementById('btn-vote');
-  const texteInitial = btn.innerText;
-  btn.disabled = true;
-  btn.innerText = "Envoi...";
+            document.getElementById('total-votes').innerText = total;
+            
+            document.getElementById('pct-france').innerText = pctFrance + "%";
+            document.getElementById('bar-france').style.width = pctFrance + "%";
 
-  try {
-    // Met à jour le compteur dans Firebase
-    const ref = database.ref(`votes/${selectedValue}`);
-    await ref.transaction(function(currentValue) {
-      return (currentValue || 0) + 1;
+            document.getElementById('pct-nul').innerText = pctNul + "%";
+            document.getElementById('bar-nul').style.width = pctNul + "%";
+
+            document.getElementById('pct-espagne').innerText = pctEspagne + "%";
+            document.getElementById('bar-espagne').style.width = pctEspagne + "%";
+
+            if (localStorage.getItem('zone_mixte_has_voted')) {
+                const checkedValue = localStorage.getItem('zone_mixte_has_voted');
+                const radios = document.getElementsByName('prono');
+                radios.forEach(radio => {
+                    if(radio.value === checkedValue) radio.checked = true;
+                    radio.disabled = true;
+                });
+                
+                const btn = document.getElementById('btn-vote');
+                btn.innerText = "Prono enregistré ✓";
+                btn.disabled = true;
+                btn.className = "w-full mt-5 bg-slate-900 text-emerald-400 border-2 border-emerald-500/30 text-xs font-black uppercase py-2.5 rounded-lg tracking-widest cursor-not-allowed shadow-none";
+                
+                const statusTag = document.getElementById('poll-status-tag');
+                statusTag.innerText = "Merci";
+                statusTag.className = "bg-emerald-500/20 text-emerald-300 text-[9px] font-black px-2.5 py-1 rounded border border-emerald-400/40 tracking-widest uppercase";
+            }
+        }
+
+        async function chargerEtAfficherSondage() {
+            const votes = await recupererVotes();
+            afficherResultats(votes);
+        }
+
+        async function submitVote() {
+            if (localStorage.getItem('zone_mixte_has_voted')) return;
+
+            const radios = document.getElementsByName('prono');
+            let selectedValue = null;
+
+            for (const radio of radios) {
+                if (radio.checked) {
+                    selectedValue = radio.value;
+                    break;
+                }
+            }
+
+            if (!selectedValue) {
+                alert("Veuillez sélectionner une option avant de valider !");
+                return;
+            }
+
+            const btn = document.getElementById('btn-vote');
+            const texteInitial = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = "Envoi...";
+
+            try {
+                await fetch(`https://api.countapi.xyz/hit/${NAMESPACE_SONDAGE}/${selectedValue}`);
+                localStorage.setItem('zone_mixte_has_voted', selectedValue);
+                await chargerEtAfficherSondage();
+            } catch (e) {
+                btn.disabled = false;
+                btn.innerText = texteInitial;
+                alert("Le vote n'a pas pu être enregistré (connexion indisponible). Réessaie dans un instant.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", chargerEtAfficherSondage);
+
+        /* ---- 2. GESTION DU TEMPS DE PUBLICATION DYNAMIQUE ---- */
+        function formatElapsedTime(publishDate) {
+            const now = new Date();
+            const publish = new Date(publishDate);
+            const diffMs = now - publish;
+            
+            if (diffMs < 0) return "À l'instant";
+            
+            const diffMinutes = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMinutes / 60);
+            const diffDays = Math.floor(diffHours / 24);
+            
+            if (diffMinutes < 1) return "À l'instant";
+            if (diffMinutes < 60) return diffMinutes + "min";
+            if (diffHours < 24) return diffHours + "h";
+            if (diffDays < 30) return diffDays + "j";
+            return Math.floor(diffDays / 30) + "mois";
+        }
+        
+       function updatePublishTimes() { // ✅ Fonction au pluriel
+    const timeElements = document.querySelectorAll(".publish-time"); // ✅ Tous les éléments avec la classe
+    timeElements.forEach(el => { // ✅ Boucle sur chaque élément
+        const publishDate = el.getAttribute("data-publish-date");
+        el.textContent = "Publié il y a " + formatElapsedTime(publishDate);
     });
-
-    // Enregistre le vote dans localStorage pour éviter les doubles votes
-    localStorage.setItem('zone_mixte_has_voted', selectedValue);
-    await chargerEtAfficherSondage();
-    alert("Votre vote a été enregistré ! 🎉");
-  } catch (e) {
-    console.error("Erreur:", e);
-    alert("Une erreur est survenue. Veuillez réessayer.");
-  } finally {
-    btn.disabled = false;
-    btn.innerText = texteInitial;
-  }
 }
 
-// Fonction pour récupérer les votes
-async function recupererVotes() {
-  const resultats = { france: 0, nul: 0, espagne: 0 };
+// Update immediately and then every minute
+updatePublishTimes();
+setInterval(updatePublishTimes, 60000); // ✅ Appel de la nouvelle fonction
 
-  try {
-    const snapshot = await database.ref('votes').once('value');
-    const votes = snapshot.val() || {};
-
-    resultats.france = votes.france || 0;
-    resultats.nul = votes.nul || 0;
-    resultats.espagne = votes.espagne || 0;
-  } catch (e) {
-    console.error("Erreur Firebase:", e);
-  }
-
-  return resultats;
-}
-
-// Fonction pour afficher les résultats
-function afficherResultats(votes) {
-  const total = votes.france + votes.nul + votes.espagne;
-  const pctFrance = total > 0 ? Math.round((votes.france / total) * 100) : 0;
-  const pctNul = total > 0 ? Math.round((votes.nul / total) * 100) : 0;
-  const pctEspagne = total > 0 ? Math.round((votes.espagne / total) * 100) : 0;
-
-  document.getElementById('total-votes').innerText = total;
-  document.getElementById('pct-france').innerText = pctFrance + "%";
-  document.getElementById('bar-france').style.width = pctFrance + "%";
-  document.getElementById('pct-nul').innerText = pctNul + "%";
-  document.getElementById('bar-nul').style.width = pctNul + "%";
-  document.getElementById('pct-espagne').innerText = pctEspagne + "%";
-  document.getElementById('bar-espagne').style.width = pctEspagne + "%";
-}
-
-// Fonction pour charger et afficher le sondage
-async function chargerEtAfficherSondage() {
-  const votes = await recupererVotes();
-  afficherResultats(votes);
-
-  // Désactive les options si l'utilisateur a déjà voté
-  if (localStorage.getItem('zone_mixte_has_voted')) {
-    const checkedValue = localStorage.getItem('zone_mixte_has_voted');
-    const radios = document.getElementsByName('prono');
-    radios.forEach(radio => {
-      if(radio.value === checkedValue) radio.checked = true;
-      radio.disabled = true;
-    });
-
-    const btn = document.getElementById('btn-vote');
-    btn.innerText = "Prono enregistré ✓";
-    btn.disabled = true;
-    btn.className = "w-full mt-5 bg-slate-900 text-emerald-400 border-2 border-emerald-500/30 text-xs font-black uppercase py-2.5 rounded-lg tracking-widest cursor-not-allowed shadow-none";
-
-    const statusTag = document.getElementById('poll-status-tag');
-    statusTag.innerText = "Merci";
-    statusTag.className = "bg-emerald-500/20 text-emerald-300 text-[9px] font-black px-2.5 py-1 rounded border border-emerald-400/40 tracking-widest uppercase";
-  }
-}
-
-// Initialisation
-document.addEventListener("DOMContentLoaded", chargerEtAfficherSondage);
-</script>
+    </script>
 
 
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5"}' crossorigin="anonymous"></script>
@@ -735,3 +695,19 @@ document.addEventListener("DOMContentLoaded", chargerEtAfficherSondage);
 
 </body>
 </html>
+
+
+    
+
+// Update immediately and then every minute
+updatePublishTimes();
+setInterval(updatePublishTimes, 60000); // ✅ Appel de la nouvelle fonction
+
+    </script>
+
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5"}' crossorigin="anonymous"></script>
+    <form action="https://formsubmit.co/adam.hly4@gmail.com" method="POST">
+    <input type="email" name="email" placeholder="Ton e-mail..." required>
+    <button type="submit">S'abonner</button>
+</form>
