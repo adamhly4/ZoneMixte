@@ -189,7 +189,7 @@
                                 </div>
                             </div>
                             <div class="p-5">
-                                <span <span class="text-xs font-bold text-violet-400/80 uppercase font-mono publish-time" data-publish-date="2026-08-03T01:00:00"></span>
+                                <span class="text-xs font-bold text-violet-400/80 uppercase font-mono publish-time" data-publish-date="2026-08-03T00:00:00"></span>
                                 <h4 class="font-black text-lg mt-2 text-slate-100 tracking-wide">Le champion d'Angleterre remet le couvert !</h4>
                                 <a href="Arsenal Gerone.html" class="text-sm text-indigo-400 font-bold block mt-9 hover:underline text-glow-violet">Lire l'article</a>
                             </div>
@@ -204,8 +204,7 @@
                                 </div>
                             </div>
                             <div class="p-5">
-                                <span class="text-xs font-bold text-violet-400/80 uppercase font-mono publish-time" data-publish-date="2026-08-03T01:30:00">
-    Publié il y a Xmin
+                                <span class="text-xs font-bold text-violet-400/80 uppercase font-mono publish-time" data-publish-date="2026-08-03T00:30:00">
 </span>
                                 <h4 class="font-black text-lg mt-2 text-slate-100 tracking-wide">Chelsea dépasse déjà les 350M€ ?</h4>
                                 <a href="Mercato Blues.html" class="text-sm text-indigo-400 font-bold block mt-11 hover:underline text-glow-violet">Lire l'article</a>
@@ -522,6 +521,59 @@
         </footer>
     </div>
 
+  <script>
+function updatePublishTimes() {
+    const now = new Date();
+    document.querySelectorAll('.publish-time').forEach(el => {
+        const publishDate = new Date(el.dataset.publishDate);
+
+        // Vérification de la validité de la date
+        if (isNaN(publishDate.getTime())) {
+            el.textContent = "Date invalide";
+            return;
+        }
+
+        const diffMs = now - publishDate;
+
+        // Date dans le futur
+        if (diffMs < 0) {
+            el.textContent = "Date future ?";
+            return;
+        }
+
+        const diffSec = Math.floor(diffMs / 1000);
+        const diffMin = Math.floor(diffSec / 60);
+        const diffHours = Math.floor(diffMin / 60);
+        const diffDays = Math.floor(diffHours / 24);
+
+        let text;
+        if (diffMin < 1) {
+            text = "À l'instant";
+        } else if (diffMin < 60) {
+            text = `Il y a ${diffMin}min`;
+        } else if (diffHours < 24) {
+            text = `Il y a ${diffHours}h`;
+        } else if (diffDays < 30) {
+            text = `Il y a ${diffDays}j`;
+        } else {
+            // Format français JJ/MM/AA
+            const day = String(publishDate.getDate()).padStart(2, '0');
+            const month = String(publishDate.getMonth() + 1).padStart(2, '0');
+            const year = String(publishDate.getFullYear()).slice(-2);
+            text = `Il y a ${day}/${month}/${year}`;
+        }
+
+        el.textContent = text;
+    });
+}
+
+// Exécute une seule fois au chargement
+updatePublishTimes();
+
+// Met à jour toutes les minutes
+setInterval(updatePublishTimes, 60000);
+  </script>
+  
     <script>
         /* ---- 1. GESTION DU COMPTE A REBOURS ---- */
         // Date fixe du prochain match : Mardi 12/08/26 à 21h00
@@ -653,33 +705,6 @@
 
         document.addEventListener("DOMContentLoaded", chargerEtAfficherSondage);
 
-        /* ---- 2. GESTION DU TEMPS DE PUBLICATION DYNAMIQUE ---- */
-        function formatElapsedTime(publishDate) {
-            const now = new Date();
-            const publish = new Date(publishDate);
-            const diffMs = now - publish;
-            
-            if (diffMs < 0) return "À l'instant";
-            
-            const diffMinutes = Math.floor(diffMs / 60000);
-            const diffHours = Math.floor(diffMinutes / 60);
-            const diffDays = Math.floor(diffHours / 24);
-            
-            if (diffMinutes < 1) return "À l'instant";
-            if (diffMinutes < 60) return diffMinutes + "min";
-            if (diffHours < 24) return diffHours + "h";
-            if (diffDays < 30) return diffDays + "j";
-            return Math.floor(diffDays / 30) + "mois";
-        }
-        
-       function updatePublishTimes() { // ✅ Fonction au pluriel
-    const timeElements = document.querySelectorAll(".publish-time"); // ✅ Tous les éléments avec la classe
-    timeElements.forEach(el => { // ✅ Boucle sur chaque élément
-        const publishDate = el.getAttribute("data-publish-date");
-        el.textContent = "Publié il y a " + formatElapsedTime(publishDate);
-    });
-}
-
 // Update immediately and then every minute
 updatePublishTimes();
 setInterval(updatePublishTimes, 60000); // ✅ Appel de la nouvelle fonction
@@ -692,6 +717,7 @@ setInterval(updatePublishTimes, 60000); // ✅ Appel de la nouvelle fonction
     <input type="email" name="email" placeholder="Ton e-mail..." required>
     <button type="submit">S'abonner</button>
 </form>
+  
 
 </body>
 </html>
