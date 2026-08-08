@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zone Mixte - Olise : Le génie français</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Conservation de la charte graphique officielle */
+        .shadow-neon-violet { box-shadow: 0 0 10px rgba(139, 92, 246, 0.3), 0 0 30px rgba(139, 92, 246, 0.6); }
+        .shadow-neon-indigo { box-shadow: 0 0 10px rgba(99, 102, 241, 0.3), 0 0 25px rgba(99, 102, 241, 0.6); }
+        .text-glow-violet { text-shadow: 0 0 12px rgba(167, 139, 250, 0.9); }
+        .text-glow-indigo { text-shadow: 0 0 12px rgba(99, 102, 241, 0.9); }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950/40 text-slate-100 font-sans antialiased min-h-screen">
+
+    <!-- Navigation Officielle -->
+    <nav class="bg-slate-950/80 backdrop-blur-xl text-white px-4 py-2 border-b-2 border-violet-500/50 sticky top-0 z-50 shadow-neon-violet">
+        <div class="container mx-auto flex justify-between items-center">
+
+            <a href="index.html" class="flex items-center space-x-4 h-20 group transition-all">
+                <img src="https://i.ibb.co/wrWnXY9L/zone-mixte.png" alt="Zone Mixte Logo" class="h-full w-auto object-contain drop-shadow-[0_0_10px_rgba(99,102,241,0.9)] group-hover:drop-shadow-[0_0_20px_rgba(249,115,22,1)] transition-all duration-300">
+                <span class="text-2xl font-black tracking-widest text-indigo-400 text-glow-violet uppercase transition-colors duration-300 group-hover:text-orange-400">
+                    ZONE <span class="text-orange-400 text-glow-orange group-hover:text-indigo-400">MIXTE</span>
+                </span>
+            </a>
+
+            <ul class="flex space-x-4 lg:space-x-6 font-black text-[11px] lg:text-xs uppercase tracking-widest">
+                <li><a href="index.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Accueil</a></li>
+                <li><a href="hebdo.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Hebdo</a></li>
+                <li><a href="Debriefs.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">DebriefS</a></li>
+                <li><a href="Podcasts.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Podcasts</a></li>
+                <li><a href="LPP.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Les Petits Pronos</a></li>
+                <li><a href="Barometre.html" class="text-slate-400 hover:text-orange-400 hover:text-glow-orange transition-colors">Le Baromètre</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Zone de l'Article Complet -->
+    <main class="container mx-auto my-8 px-4 max-w-4xl">
+
+        <!-- Bouton Retour rapide au kiosque -->
+        <div class="mb-6">
+            <a href="hebdo.html" class="text-xs font-mono uppercase tracking-widest text-slate-400 hover:text-indigo-400 transition-colors">← Retour aux articles</a>
+        </div>
+
+        <article class="bg-slate-950/60 backdrop-blur-md rounded-xl overflow-hidden border-2 border-indigo-500 shadow-neon-indigo p-6 md:p-10">
+
+            <!-- En-tête de l'article -->
+            <header class="mb-8 border-b border-slate-800 pb-6">
+                <div class="flex items-center space-x-3 text-xs font-mono uppercase tracking-widest text-slate-500 mb-3">
+                    <span>Hebdo</span>
+                    <span>•</span>
+                    <span>Rédacteur : Adam Halley</span>
+                </div>
+
+                <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-slate-100 leading-tight">
+                    <span class="text-indigo-400 text-glow-indigo">Liverpool :</span> La surprise <span class="text-orange-400">Ronald Araújo</span>
+                </h1>
+            </header>
+
+            <!-- Image d'Illustration recadrée vers le haut -->
+            <div class="w-full h-89 md:h-[500px] rounded-lg overflow-hidden mb-8 border border-slate-800">
+                <a href="https://ibb.co/mVMttkZY">
+                    <img src="https://i.ibb.co/VYpYsfrW/50969acb81be4686eb9117016a5ad42cde635064.webp"
+                         alt="50969acb81be4686eb9117016a5ad42cde635064"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                </a>
+            </div>
+
+            <!-- CORPS DE L'ARTICLE restructuré -->
+            <div class="space-y-8 text-slate-300 text-sm md:text-base leading-relaxed font-medium">
+
+                <!-- Introduction -->
+                <p class="text-lg text-slate-200 font-semibold tracking-wide mb-4">
+            Alors que le feuilleton <span class="text-orange-400">Barcola</span> se poursuit, avec notamment une nouvelle offre formulée hier matin par les <span class="text-red-400">Reds</span> à hauteur de <span class="text-yellow-400">115M€</span> pour s'attacher les services de l'ailier français, <span class="text-red-400">Liverpool</span> réalise une arrivée surprise.
+        </p>
+
+        <hr class="border-slate-800 my-6">
+
+        <p> class="mb-4">
+            Cette nuit, c'est le défenseur central uruguayen de 27 ans <span class="text-orange-400">Ronald Araújo</span> qui a été officialisé (source :<span class="text-blue-400"> l'Équipe</span> et <span class="text-blue-400">Fabrizio Romano</span>). Le défenseur arrive du <span class="text-green-400">FC Barcelone</span> sous la forme d'un prêt avec option d'achat selon <span class="text-blue-400">Mundo Deportivo</span>.
+        </p>
+
+        <p class="mb-4">
+            Cependant, avec seulement 30 titularisations en 2 ans (un peu plus de 110 rencontres), le joueur n'est clairement pas dans la forme de sa vie. Il devra combler le départ de <span class="text-orange-400">Ibrahima Konaté</span> à <span class="text-green-400">Madrid</span> ainsi que les blessures de <span class="text-orange-400">Giovanni Leoni</span> et <span class="text-orange-400">Joe Gomez</span>.
+        </p>
+
+        <p class="mb-4">
+            Sa mission s'annonce délicate : rassurer une défense de <span class="text-red-400">Liverpool</span> en grande difficulté l'an dernier et lors de cette intersaison, objectif compliqué compte tenu du profil agressif du joueur.
+        </p>
+
+        <hr class="border-slate-800 my-6">
+
+        <p class="mb-4">
+            Toutefois, sa polyvalence représente un atout majeur. Il pourra en effet occuper le couloir droit de la défense, permettant à <span class="text-purple-400">Iraola</span> d'avoir plusieurs options tactiques.
+        </p>
+
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Footer Officiel -->
+    <footer class="bg-slate-950 text-slate-500 text-center py-8 mt-16 text-xs border-t-2 border-slate-900 tracking-widest font-bold">
+        <p>&copy; 2026 ZONE MIXTE. Par Adam Halley.</p>
+    </footer>
+
+</body>
+</html>
