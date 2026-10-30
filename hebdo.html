@@ -127,12 +127,14 @@
      
         <main class="container mx-auto my-8 px-4 space-y-8">
             
-            <!-- LE SUJET DE LA SEMAINE -->
+            <!-- LE SUJET DE LA SEMAINE (Photo à gauche, Titre/Texte à droite) -->
             <section class="bg-slate-950/60 backdrop-blur-md rounded-xl overflow-hidden border-2 border-violet-500/60 shadow-neon-violet transition-all duration-300 hover:border-violet-400 grid grid-cols-1 md:grid-cols-5">
-                <div class="md:col-span-2 h-56 md:h-full relative bg-slate-950 overflow-hidden -ml-6">
-                   <a href="https://ibb.co/wZSngQCn"> <img src="https://i.ibb.co/NgtVCwTW/images-19.jpg" alt="images-19" class="w-full h-full object-cover brightness-90 contrast-125 hover:scale-110 transition-all duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-transparent to-slate-950"></div>
+                <!-- Colonne image (à gauche) -->
+                <div class="md:col-span-2 h-56 md:h-full relative bg-slate-950 overflow-hidden">
+                   <a href="https://ibb.co/wZSngQCn"><img src="https://i.ibb.co/NgtVCwTW/images-19.jpg" alt="images-19" class="w-full h-full object-cover brightness-90 contrast-125 hover:scale-110 transition-all duration-500"></a>
+                   <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-transparent to-slate-950"></div>
                 </div>
+                <!-- Colonne texte (à droite) -->
                 <div class="p-6 md:p-8 md:col-span-3 flex flex-col justify-center">
                     <div>
                         <span class="bg-orange-500/20 text-orange-400 text-xs font-black px-3 py-1 rounded border border-orange-400/50 tracking-widest text-glow-orange">LE SUJET DE LA SEMAINE</span>
